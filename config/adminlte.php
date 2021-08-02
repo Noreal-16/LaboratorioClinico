@@ -101,7 +101,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    //Personalizar El LOGIN Inicio de sesion 
+    //Personalizar El LOGIN Inicio de sesion
     'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
@@ -246,11 +246,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        
+
         ['header' => 'Menú Principal'],
         [
             'text' => 'Laboratorios',
-            'url'  => '#', 
+            'url'  => '/laboratorios',
             'icon' => 'fas fa-microscope',
         ],
         [
@@ -283,14 +283,14 @@ return [
             'url'  => '#',
             'icon' => 'fas fa-poll',
         ],
-        
+
         ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
             'url'        => '#',
         ],
-        
+
     ],
 
     /*
