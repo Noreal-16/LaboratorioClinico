@@ -14,8 +14,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
-        return "Controlador Paciente";
+        //Llamada a pacientes
+        return view('admin.pacientes');
     }
 
     /**

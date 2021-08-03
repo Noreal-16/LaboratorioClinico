@@ -14,7 +14,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroLaboratorio" method="POST" action="">
+                    <form id="registroCategoria" method="POST" action="">
 
                             <input type="hidden" value="<%= item.external_id%>" id="external_idMas" name="external_idMas" />
 

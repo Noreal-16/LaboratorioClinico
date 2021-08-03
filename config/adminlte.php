@@ -265,7 +265,7 @@ return [
         ],
         [
             'text' => 'Pacientes',
-            'url'  => '#',
+            'url'  => '/pacientes',
             'icon' => 'fas fa-user-injured',
         ],
         [

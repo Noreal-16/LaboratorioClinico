@@ -35,4 +35,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaCon
 /**
  * Direcciones Pacientes
  */
-Route::get('pacientes', [PacienteController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('pacientes', [PacienteController::class, 'index']);
