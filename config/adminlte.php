@@ -255,7 +255,7 @@ return [
         ],
         [
             'text' => 'Categorías',
-            'url'  => '#',
+            'url'  => '/categorias',
             'icon' => 'fas fa-tasks',
         ],
         [

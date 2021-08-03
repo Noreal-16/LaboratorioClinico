@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Laboratorios</h1>
+    <h1>Categorías</h1>
     <div>
-        <div class="modal fade" id="modalRegistroLaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalRegistroCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Registro Laboratorio
+                            Registro Categoría
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -21,7 +21,7 @@
                                 <div class="modal-body">
                                     <div class="input-group">
                                         <span class="input-group-text">Nombre:</span>
-                                        <input type="text" class="form-control" id="nombreLaboratorio" name="nombreLaboratorio" placeholder="Ingrese Nombre Laboratorio" >
+                                        <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" placeholder="Ingrese Nombre Categoría" >
                                     </div>
                                 </div>
                                 <div class="modal-body">
@@ -42,23 +42,23 @@
 
 
     <section>
-        <div class="modal fade" id="modalActualizaLaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalActualizaCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Modificar Laboratorio
+                            Modificar Categoría
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="actualizaLaboratorio" method="POST" action="">
+                    <form id="actualizaCategoria" method="POST" action="">
                         <input type="hidden" value="" id="" name="" />
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Nombre:</span>
-                                <input type="text" class="form-control" id="nombreLaboratorio" name="nombreLaboratorio" placeholder="Ingrese Nombre Laboratorio" >
+                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" placeholder="Ingrese Nombre Categoría" >
                             </div>
                         </div>
                         <div class="modal-body">
@@ -89,7 +89,7 @@
                     <div class="card-header btn-succses">
                         <div class="card-title text-center">
 
-                            <button type="button" class=" btn btn-outline-primary ml-auto float-left" data-toggle="modal" data-target="#modalRegistroLaboratorio">Nuevo</button>
+                            <button type="button" class=" btn btn-outline-primary ml-auto float-left" data-toggle="modal" data-target="#modalRegistroCategoria">Nuevo</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -98,10 +98,9 @@
                             <table id="tablaLHistorialP" class="table table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Id_Laboratorio</th>
-                                        <th>Nombre Laboratorio</th>
-                                        <th>Descripcion Laboratorio</th>
-                                        <th>Enviar a Laboratorio</th>
+                                        <th>Id_Categoria</th>
+                                        <th>Nombre Categoría</th>
+                                        <th>Descripcion Categoría</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -118,13 +117,10 @@
                                                 2
                                             </td>
                                             <td>
-                                                1
-                                            </td>
-                                            <td>
                                                 <form name="eliminarHistorialM" action="/eliminarHistorial" method="POST">
                                                     <input type="hidden" value="<%= item.external_id%>" id="externalDelete" name="externalDelete">
                                                     <div class="btn-group">
-                                                        <a href="#" data-toggle="modal" data-target="#modalActualizaLaboratorio" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenaDatosHistorial('<%= item.external_id%>')">
+                                                        <a href="#" data-toggle="modal" data-target="#modalActualizaCategoria" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenaDatosHistorial('<%= item.external_id%>')">
                                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                                             <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>

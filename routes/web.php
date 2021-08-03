@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LaboratorioController;
+use App\Http\Controllers\CategoriaController;
 
 
 /*
@@ -27,6 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
  * Direcciones Laboratorio
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios', [LaboratorioController::class, 'index']);
+/**
+ * Direcciones Categoria
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaController::class, 'index']);
 /**
  * Direcciones Pacientes
  */
