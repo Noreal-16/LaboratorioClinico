@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\MedicoController;
 
 
 /*
@@ -36,3 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaCon
  * Direcciones Pacientes
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('pacientes', [PacienteController::class, 'index']);
+/**
+ * Direcciones Medico
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('medicos', [MedicoController::class, 'index']);

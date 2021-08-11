@@ -270,7 +270,7 @@ return [
         ],
         [
             'text' => 'Médicos',
-            'url'  => '#',
+            'url'  => '/medicos',
             'icon' => 'fas fa-user-md',
         ],
         [
