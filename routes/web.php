@@ -6,6 +6,7 @@ use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\PedidoController;
 
 
 /*
@@ -46,3 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('medicos', [MedicoControlle
  * Examenes
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('examenes', [ExamenController::class, 'index']);
+/**
+ * Pedidos
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('pedidos', [PedidoController::class, 'index']);

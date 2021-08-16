@@ -275,7 +275,7 @@ return [
         ],
         [
             'text' => 'Pedidos',
-            'url'  => '#',
+            'url'  => '/pedidos',
             'icon' => 'fas fa-clipboard-list',
         ],
         [
