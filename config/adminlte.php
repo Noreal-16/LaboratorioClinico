@@ -260,7 +260,7 @@ return [
         ],
         [
             'text' => 'Exámenes',
-            'url'  => '#',
+            'url'  => '/examenes',
             'icon' => 'fas fa-notes-medical',
         ],
         [
