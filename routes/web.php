@@ -34,7 +34,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios', [Laboratori
 /**
  * Direcciones Categoria
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+Route::middleware(['auth:sanctum', 'verified'])->post('categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('categorias/show/{id}', [CategoriaController::class, 'show'])->name('categorias.show');
+
 /**
  * Direcciones Pacientes
  */

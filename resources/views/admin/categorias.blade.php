@@ -14,8 +14,8 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroCategoria" method="POST" action="">
-
+                    <form id="registroCategoria" method="POST" action="{{route('categorias.store')}}">
+                        @csrf
                             <input type="hidden" value="<%= item.external_id%>" id="external_idMas" name="external_idMas" />
 
                                 <div class="modal-body">
@@ -58,13 +58,13 @@
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Nombre:</span>
-                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" placeholder="Ingrese Nombre Categoría" >
+                                <input type="text" class="form-control" id="nombreCategoriaAc" name="nombreCategoriaAc" value="">
                             </div>
                         </div>
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Descripcion:</span>
-                                <textarea type="text" rows="4" cols="20" class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese Descripcion"> </textarea>
+                                <textarea type="text" rows="4" cols="20" class="form-control" id="descripcionAc" name="descripcionAc"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -105,22 +105,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($categories as $categoria)
                                         <tr>
+
                                             <td>
-                                                4
+                                                {{$categoria->id}}
                                             </td>
                                             <td>
-                                                3
+                                                {{$categoria->nombre}}
                                             </td>
                                             <td>
-                                                2
+                                                {{$categoria->descripcion}}
                                             </td>
+
                                             <td>
                                                 <form name="eliminarHistorialM" action="/eliminarHistorial" method="POST">
-                                                    <input type="hidden" value="<%= item.external_id%>" id="externalDelete" name="externalDelete">
+                                                    <input type="hidden" value="" id="externalDelete" name="externalDelete">
+
                                                     <div class="btn-group">
-                                                        <a href="#" data-toggle="modal" data-target="#modalActualizaCategoria" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenaDatosHistorial('<%= item.external_id%>')">
+                                                        <a href="#" class="btn btn-"data-toggle="modal" data-target="#modalActualizaCategoria" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="{{$categoria->id}}">
                                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                                             <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
@@ -137,6 +140,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>

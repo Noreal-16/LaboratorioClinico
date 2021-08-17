@@ -15,7 +15,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //Llamamos a categoria
-        return view('admin.categorias');
+        $categories = Categoria::all();
+        return view('admin.categorias', compact('categories'));
     }
 
     /**
@@ -26,7 +27,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Metodo para guardar categoria
+        $categorias = new Categoria;
+        $categorias->nombre = $request->input('nombreCategoria');
+        $categorias->descripcion = $request->input('descripcion');
+        $categorias->save();
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -35,9 +41,11 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show($id)
     {
-        //
+        //buscador
+        echo ($id);
+        $categoria = Categoria::find($id);
     }
 
     /**
@@ -47,9 +55,11 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Categoria $categories)
     {
         //
+        return $categories;
+
     }
 
     /**
