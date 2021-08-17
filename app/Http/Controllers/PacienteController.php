@@ -15,7 +15,8 @@ class PacienteController extends Controller
     public function index()
     {
         //Llamada a pacientes
-        return view('admin.pacientes');
+        $paciente = Paciente::all();
+        return view('admin.pacientes', compact('paciente'));
     }
 
     /**
@@ -26,7 +27,21 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Guardar datos de paciente
+        $paciente = new Paciente;
+        $paciente->nombre = $request->input('nombre');
+        $paciente->apellido = $request->input('apellido');
+        $paciente->sexo = $request->input('sexo');
+        $paciente->cedula = $request->input('cedula');
+        $paciente->fechaNacimiento = $request->input('fecha');
+        $paciente->edad = $request->input('edad');
+        $paciente->direccion = $request->input('direccion');
+        $paciente->telefono = $request->input('telefono');
+        $paciente->correo = $request->input('correo');
+        $paciente->observaciones = $request->input('observacion');
+        $paciente->save();
+        return redirect()->route('pacientes.index');
+
     }
 
     /**

@@ -14,7 +14,9 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroPaciente" method="POST" action="">
+
+                    <form id="registroPaciente" method="POST" action="{{route('pacientes.store')}}">
+                        @csrf
 
                             <input type="hidden" value="" id="" name="" />
 
@@ -27,15 +29,16 @@
                             <div class="modal-body">
                                 <div class="input-group">
                                     <span class="input-group-text">Apellidos:</span>
-                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese Apellidos" >
+                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese Apellidos" >
                                 </div>
                             </div>
                             <div class="modal-body">
                                 <div class="input-group">
                                     <span class="input-group-text">Sexo:</span>
-                                    <select name="select" class="form-control">
-                                        <option value="value1" selected >Hombre</option>
-                                        <option value="value2" >Mujer</option>
+                                    <select class="form-control" name="sexo" id="sexo" aria-describedby="espeHelp">
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -73,6 +76,12 @@
                                 <div class="input-group">
                                     <span class="input-group-text">Correo:</span>
                                     <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese correo" >
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-text">Observaciones:</span>
+                                    <input type="text" class="form-control" id="observacion" name="observacion" placeholder="Ingrese Observacion" >
                                 </div>
                             </div>
                                 <div class="modal-footer">
@@ -157,6 +166,12 @@
                                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese correo" >
                             </div>
                         </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-text">Observaciones:</span>
+                                <input type="text" class="form-control" id="observacion" name="observacion" placeholder="Ingrese Observacion" >
+                            </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Guardar</button>
@@ -199,10 +214,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($paciente as $data)
                                         <tr>
                                             <td>
-                                                1
+                                                {{$data->id}}
                                             </td>
                                             <td>
                                                 Alex
@@ -243,6 +258,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>

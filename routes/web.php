@@ -41,7 +41,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('categorias/show/{id}', [Ca
 /**
  * Direcciones Pacientes
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('pacientes', [PacienteController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('pacientes', [PacienteController::class, 'index'])->name('pacientes.index');
+Route::middleware(['auth:sanctum', 'verified'])->post('pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
 /**
  * Direcciones Medico
  */

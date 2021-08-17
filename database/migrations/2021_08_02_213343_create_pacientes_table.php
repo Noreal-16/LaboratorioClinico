@@ -24,7 +24,7 @@ class CreatePacientesTable extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->string('correo');
-            $table->text('observaciones');
+            $table->string('observaciones');
             $table->timestamps();
         });
     }
