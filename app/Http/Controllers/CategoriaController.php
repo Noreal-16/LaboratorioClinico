@@ -46,6 +46,7 @@ class CategoriaController extends Controller
         //buscador
         echo ($id);
         $categoria = Categoria::find($id);
+        return $categoria;
     }
 
     /**

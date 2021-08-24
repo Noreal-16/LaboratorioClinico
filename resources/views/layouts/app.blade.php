@@ -17,7 +17,10 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <script  type="text/javascript" src="{{ mix('js/utilidades.js')}}"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -27,6 +30,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
+
                 <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
@@ -43,5 +47,6 @@
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>
