@@ -15,6 +15,23 @@ class CreateExamensTable extends Migration
     {
         Schema::create('examens', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->unsignedBigInteger('laboratorio_id');
+            $table->foreign('laboratorio_id')->references('id')->on('laboratorios');
+            $table->string('formato');
+            $table->string('unidadMedida');
+            $table->integer('precio1');
+            $table->integer('precio2');
+            $table->string('valReferencia1');
+            $table->string('valReferencia2');
+            $table->string('valReferencia3');
+            $table->string('valReferencia4');
+            $table->string('valReferencia5');
+            $table->string('valReferencia6');
+            $table->string('valReferencia7');
+            $table->string('valReferencia8');
             $table->timestamps();
         });
     }

@@ -15,6 +15,14 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
+            $table->integer('numeroPedido');
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->unsignedBigInteger('paciente_id');
+            $table->foreign('medico_id')->references('id')->on('medicos');
+            $table->unsignedBigInteger('medico_id');
+            $table->foreign('examen_id')->references('id')->on('examens');
+            $table->unsignedBigInteger('examen_id');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
