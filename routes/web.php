@@ -36,7 +36,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios', [Laboratori
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
 Route::middleware(['auth:sanctum', 'verified'])->post('categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('categorias/eliminar/{id}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
 Route::middleware(['auth:sanctum', 'verified'])->get('categorias/show/{id}', [CategoriaController::class, 'show'])->name('categorias.show');
+Route::middleware(['auth:sanctum', 'verified'])->post('categorias/actualizar', [CategoriaController::class, 'update'])->name('categorias.update');
 
 /**
  * Direcciones Pacientes

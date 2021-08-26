@@ -329,13 +329,13 @@ return [
     */
 
     'plugins' => [
-        'Datatables' => [
+        'DataTables' => [
             'active' => false,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => '//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
@@ -345,7 +345,7 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css',
                 ],
             ],
         ],
@@ -396,6 +396,46 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'Jquery' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//code.jquery.com/jquery-3.6.0.slim.min.js',
+                ],
+            ],
+        ],
+        'Utilidades' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js',
                 ],
             ],
         ],

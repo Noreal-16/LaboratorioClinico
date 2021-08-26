@@ -1,7 +1,8 @@
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2', true)
 @section('content_header')
     <h1>Categorías</h1>
+   <section>
     <div>
         <div class="modal fade" id="modalRegistroCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -14,9 +15,9 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroCategoria" method="POST" action="{{route('categorias.store')}}">
+                    <form id="registroCategoria">
                         @csrf
-                            <input type="hidden" value="<%= item.external_id%>" id="external_idMas" name="external_idMas" />
+
 
                                 <div class="modal-body">
                                     <div class="input-group">
@@ -32,7 +33,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-success">Registrar</button>
                                 </div>
                     </form>
                 </div>
@@ -53,8 +54,9 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="actualizaCategoria" method="POST" action="">
-                        <input type="hidden" value="" id="" name="" />
+                    <form id="actualizaCategoria" >
+                        @csrf
+                        <input type="hidden" name="txtId" id="txtId">
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Nombre:</span>
@@ -95,7 +97,7 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <table id="tablaLHistorialP" class="table table-sm">
+                            <table id="tablaCategoria" class="table table-hover data-table">
                                 <thead>
                                     <tr>
                                         <th>Id_Categoria</th>
@@ -104,44 +106,9 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($categories as $categoria)
-                                        <tr>
 
-                                            <td>
-                                                {{$categoria->id}}
-                                            </td>
-                                            <td>
-                                                {{$categoria->nombre}}
-                                            </td>
-                                            <td>
-                                                {{$categoria->descripcion}}
-                                            </td>
 
-                                            <td>
-                                                <form name="eliminarHistorialM" action="/eliminarHistorial" method="POST">
-                                                    <input type="hidden" value="" id="externalDelete" name="externalDelete">
 
-                                                    <div class="btn-group">
-                                                        <a href="#" class="btn btn-"data-toggle="modal" data-target="#modalActualizaCategoria" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenarDatosServicio({{$categoria->id}})">
-                                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                                            <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                                                        </svg>
-                                                            <i class="far fa-edit"></i></a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button type="submit" class="btn btn-sm ">
-                                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1z"/>
-                                                        </svg>
-                                                    </button>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -149,4 +116,150 @@
             </div>
         </div>
     </section>
+    <section >
+        <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="eliminaCategoriaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Desea eliminar la categoria?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"data-dismiss="modal">Cancelar</button>
+          <button type="submit"  id="btnEliminar" name="btnEliminar" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </section>
+    @section('js')
+    <!--METODO PARA LISTAR DATOS-->
+    <script>
+        $(document).ready(function() {
+            console.log("Ingresado");
+        var tablaCategorias = $('#tablaCategoria').DataTable({
+            processing:true,
+            serverSide:true,
+
+            ajax:{
+                url:"{{route('categorias.index')}}",
+            },
+            columns:[
+                {data: 'id'},
+                {data: 'nombre'},
+                {data: 'descripcion'},
+                {data: 'action', orderable: false},
+            ]
+        });
+    });
+    </script>
+    <!--METODO PARA CREAR UNA CATEGORIA-->
+    <script>
+        $('#registroCategoria').submit(function(e){
+            e.preventDefault();
+            var nombre =$('#nombreCategoria').val();
+            var descripcion =$('#descripcion').val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                url: "{{route('categorias.store')}}",
+                type: "POST",
+                data:{
+                    nombre: nombre,
+                    descripcion: descripcion,
+                    _token:_token
+                },
+                succses:function(response){
+                    if(response){
+                        $('#modalRegistroCategoria').modal('hide');
+                        $('#tablaCategoria').DataTable().ajax.reload();
+                        Swal.fire(
+                            'Categoria Guardada!',
+                            'You clicked the button!',
+                            'success'
+                            );
+                    }else{
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Error al cargar datos',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+    <!--METODO PARA ELIMINAR DATOS-->
+    <script>
+        var cate_ide;
+        $(document).on('click','.delete', function(){
+            cate_ide = $(this).attr('id');
+            $('#eliminaCategoriaModal').modal('show');
+        });
+        $('#btnEliminar').on('click', function(){
+            $.ajax({
+                url:"categorias/eliminar/"+cate_ide,
+                //beforeSend:function(){
+                    //$('#btnEliminar').text('Eliminanco...');
+                //},
+                success:function(data){
+                    setTimeout(function(){
+                        $('#eliminaCategoriaModal').modal('hide');
+                        $('#tablaCategoria').DataTable().ajax.reload();
+                    }, 500);
+                    $('#btnEliminar').text('Eliminar');
+                }
+            });
+        })
+    </script>
+    <!--METODO PARA CARGAR DATOS-->
+    <script>
+        function editarCategoria(id) {
+            $.get('categorias/show/'+id, function(categorias){
+            //asignar datos recuperados
+            $('#txtId').val(categorias[0].id);
+            $('#nombreCategoriaAc').val(categorias[0].nombre);
+            $('#descripcionAc').val(categorias[0].descripcion);
+            $("input[name=_token]").val();
+            $('#modalActualizaCategoria').modal('toggle');
+            })
+        }
+    </script>
+    <!--METODO PARA ACTUALIZAR DATOS-->
+    <script>
+        $('#actualizaCategoria').submit(function(e){
+            e.preventDefault();
+            var id2 =$('#txtId').val();
+            var nombre2 =$('#nombreCategoriaAc').val();
+            var descripcion2 =$('#descripcionAc').val();
+            var _token2 = $("input[name=_token]").val();
+
+            $.ajax({
+                url:"{{route('categorias.update')}}",
+                type:"POST",
+                data:{
+                    id:id2,
+                    nombre:nombre2,
+                    descripcion:descripcion2,
+                    _token:_token2
+                },
+                success:function(response){
+                    if(response){
+                        $('#modalActualizaCategoria').modal('hide');
+                        $('#tablaCategoria').DataTable().ajax.reload();
+                    }
+                }
+
+            })
+        });
+    </script>
+    @stop
 @stop
