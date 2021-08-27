@@ -20,7 +20,7 @@ class CategoriaController extends Controller
     {
         if($request->ajax()){
             $categorias = DB::select('CALL dbcategorias()');
-            return Datatables::of($categorias)
+            return DataTables::of($categorias)
                 ->addIndexColumn('')
                 ->addColumn('action', function($categorias){
                     $acciones ='<a href="javascript:void(0)" onclick="editarCategoria('.$categorias->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete" id="'.$categorias->id.'" class="delete btn btn-danger btn-sm">Delete</a>';
@@ -55,10 +55,6 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        //buscador
-        //echo ($id);
-        //$categoria = Categoria::find($id);
-        //return $categoria;
 
         $categorias = DB::select('call listaCategoria(?)',[$id]);
         return response()->json($categorias);

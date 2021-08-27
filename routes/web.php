@@ -45,6 +45,8 @@ Route::middleware(['auth:sanctum', 'verified'])->post('categorias/actualizar', [
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('pacientes', [PacienteController::class, 'index'])->name('pacientes.index');
 Route::middleware(['auth:sanctum', 'verified'])->post('pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('pacientes/show/{id}', [PacienteController::class, 'show'])->name('pacientes.show');
+Route::middleware(['auth:sanctum', 'verified'])->post('pacientes/actualizar', [PacienteController::class, 'update'])->name('pacientes.update');
 /**
  * Direcciones Medico
  */

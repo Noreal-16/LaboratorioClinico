@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use Yajra\DataTables\Facades\DataTables as DataTables;
 
 class PacienteController extends Controller
 {
@@ -12,11 +15,20 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Llamada a pacientes
-        $paciente = Paciente::all();
-        return view('admin.pacientes', compact('paciente'));
+        if($request->ajax()){
+            $pacientes = DB::select('call DBPacientes()');
+            return DataTables::of($pacientes)
+                ->addIndexColumn('')
+                ->addColumn('action', function ($pacientes){
+                    $acciones ='<a href="javascript:void(0)" onclick="listarPacientes('.$pacientes->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete" id="" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $acciones;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.pacientes');
     }
 
     /**
@@ -50,9 +62,11 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Paciente $paciente)
+    public function show($id)
     {
-        //
+        //Metodo para listar Pacientes
+        $pacientes =DB::select('call listaPaciente(?)',[$id]);
+        return response()->json($pacientes);
     }
 
     /**
@@ -62,9 +76,12 @@ class PacienteController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(Request $request)
     {
-        //
+        //Actualizar Pacientes
+        $pacientes = DB::select('call updatePacientes(?,?,?,?,?,?,?,?,?,?,?)',
+                                [$request->id,$request->nombre,$request->apellido,$request->sexo,$request->cedula,$request->fechaNacimiento,$request->edad,$request->direccion,$request->telefono,$request->correo,$request->observaciones]);
+        return back();
     }
 
     /**
