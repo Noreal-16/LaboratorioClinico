@@ -14,14 +14,13 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroMedico" method="POST" action="">
 
-                            <input type="hidden" value="" id="" name="" />
-
+                    <form id="registroMedico" method="POST" action="{{route('medicos.store')}}">
+                        @csrf
                                 <div class="modal-body">
                                     <div class="input-group">
                                         <span class="input-group-text">Nombre:</span>
-                                        <input type="text" class="form-control" id="nombreMedico" name="nombreMedicoo" placeholder="Ingrese Nombre Medico" >
+                                        <input type="text" class="form-control" id="nombreMedico" name="nombreMedico" placeholder="Ingrese Nombre Medico" >
                                     </div>
                                 </div>
                                 <div class="modal-body">
@@ -54,17 +53,18 @@
             </button>
                     </div>
                     <form id="actualizaMedico" method="POST" action="">
-                        <input type="hidden" value="" id="" name="" />
+                        @csrf
+                        <input type="hidden"  id="id" name="id" />
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Nombre:</span>
-                                <input type="text" class="form-control" id="nombreMedico" name="nombreMedicoo" placeholder="Ingrese Nombre Medico" >
+                                <input type="text" class="form-control" id="nombreMedicoAC" name="nombreMedicoAC" placeholder="Ingrese Nombre Medico" >
                             </div>
                         </div>
                         <div class="modal-body">
                             <div class="input-group">
                                 <span class="input-group-text">Observaciones:</span>
-                                <textarea type="text" rows="4" cols="20" class="form-control" id="observacion" name="observacion" placeholder="Ingrese Observaciones"> </textarea>
+                                <textarea type="text" rows="4" cols="20" class="form-control" id="observacionAC" name="observacionAC" placeholder="Ingrese Observaciones"> </textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -95,7 +95,7 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <table id="tablaLHistorialP" class="table table-sm">
+                            <table id="tablaLMedicos" class="table table-sm">
                                 <thead>
                                     <tr>
                                         <th>Id Medico</th>
@@ -104,44 +104,72 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
 
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                <form name="eliminarHistorialM" action="/eliminarHistorial" method="POST">
-                                                    <input type="hidden" value="<%= item.external_id%>" id="externalDelete" name="externalDelete">
-                                                    <div class="btn-group">
-                                                        <a href="#" data-toggle="modal" data-target="#modalActualizaMedico" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenaDatosHistorial('<%= item.external_id%>')">
-                                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                                            <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                                                        </svg>
-                                                            <i class="far fa-edit"></i></a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button type="submit" class="btn btn-sm ">
-                                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1z"/>
-                                                        </svg>
-                                                    </button>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @section('js')
+        <!--METODO PARA LISTAR DATOS-->
+        <script>
+            $(document).ready(function(){
+                var tablaMed = $('#tablaLMedicos').DataTable({
+                    processing:true,
+                    serverSide:true,
+
+                    ajax:{
+                        url:"{{route('medicos.index')}}",
+                    },
+                    columns:[
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'observaciones'},
+                        {data: 'action', orderable: false},
+                    ]
+                });
+            });
+        </script>
+        <!--METODO PARA CARGAR DATOS-->
+        <script>
+            function listaMedicos(id){
+                $.get('medicos/show/'+id, function(medicos){
+                    $('#id').val(medicos[0].id);
+                    $('#nombreMedicoAC').val(medicos[0].nombre);
+                    $('#observacionAC').val(medicos[0].observaciones);
+                    $("input[name=_token]").val();
+                    $('#modalActualizaMedico').modal('toggle');
+                })
+            }
+        </script>
+        <!--METODO PARA Actualizar Datos-->
+        <script>
+            $('#actualizaMedico').submit(function (e) {
+                e.preventDefault();
+
+                var idmed = $('#id').val();
+                var mednombre = $('#nombreMedicoAC').val();
+                var medobservacion = $('#observacionAC').val();
+                var _tokenMed = $('input[name=_token]').val();
+
+                $.ajax({
+                    url:"{{route('medicos.update')}}",
+                    type:"POST",
+                    data:{
+                        id:idmed,
+                        nombre:mednombre,
+                        observaciones:medobservacion,
+                        _token:_tokenMed,
+                    },
+                    success:function (response) {
+                        if(response){
+                            $('#modalActualizaMedico').modal('hide');
+                            $('#tablaLMedicos').DataTable().ajax.reload();
+                        }
+                    }
+                })
+            });
+        </script>
+        @stop
 @stop

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables as DataTables;
 
 class MedicoController extends Controller
 {
@@ -12,9 +14,20 @@ class MedicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //Medicos
+        if($request->ajax()){
+            $medicos =DB::select('call db_medicos()');
+            return DataTables::of($medicos)
+            ->addIndexColumn('')
+            ->addColumn('action', function($medicos){
+                $acciones ='<a href="javascript:void(0)" onclick="listaMedicos('.$medicos->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete"  class="delete btn btn-danger btn-sm">Delete</a>';
+                return $acciones;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
         return view('admin.medicos');
     }
 
@@ -26,7 +39,13 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Guardar Datos
+        $medicos = new Medico;
+        $medicos->nombre = $request->input('nombreMedico');
+        $medicos->observaciones = $request->input('observacion');
+        $medicos->save();
+        return redirect()->route('medicos.index');
+
     }
 
     /**
@@ -35,9 +54,11 @@ class MedicoController extends Controller
      * @param  \App\Models\Medico  $medico
      * @return \Illuminate\Http\Response
      */
-    public function show(Medico $medico)
+    public function show($id)
     {
-        //
+        //presentar datos medicos
+        $medicos = DB::select('call listaMedicos(?)',[$id]);
+        return response()->json($medicos);
     }
 
     /**
@@ -50,6 +71,9 @@ class MedicoController extends Controller
     public function update(Request $request, Medico $medico)
     {
         //
+        $pacientes =DB::select('call updateMedicos(?,?,?)',
+                                [$request->id, $request->nombre,$request->observaciones]);
+        return back();
     }
 
     /**
