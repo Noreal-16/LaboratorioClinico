@@ -45,7 +45,6 @@ class MedicoController extends Controller
         $medicos->observaciones = $request->input('observacion');
         $medicos->save();
         return redirect()->route('medicos.index');
-
     }
 
     /**

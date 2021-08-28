@@ -30,7 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
 /**
  * Direcciones Laboratorio
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios', [LaboratorioController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios', [LaboratorioController::class, 'index'])->name('laboratorios.index');
+Route::middleware(['auth:sanctum', 'verified'])->post('laboratorios', [LaboratorioController::class, 'store'])->name('laboratorios.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios/show/{id}', [LaboratorioController::class, 'show'])->name('laboratorios.show');
+Route::middleware(['auth:sanctum', 'verified'])->post('laboratorios/actualizar', [LaboratorioController::class, 'update'])->name('laboratorios.update');
 /**
  * Direcciones Categoria
  */

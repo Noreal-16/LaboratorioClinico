@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Laboratorio;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables as DataTables;
+
 class LaboratorioController extends Controller
 {
     /**
@@ -12,8 +15,19 @@ class LaboratorioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $laboratorios = DB::select('call db_Laboratorios()');
+            return DataTables::of($laboratorios)
+            ->addIndexColumn('')
+            ->addColumn('action', function ($laboratorios){
+                $acciones ='<a href="javascript:void(0)" onclick="listaLaboratorios('.$laboratorios->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete"  class="delete btn btn-danger btn-sm">Delete</a>';
+                return $acciones;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
         return view('admin.laboratorios');
     }
 
@@ -25,7 +39,11 @@ class LaboratorioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $laboratorios = new Laboratorio;
+        $laboratorios->nombre = $request->input('nombreLaboratorio');
+        $laboratorios->descripcion= $request->input('descripcion');
+        $laboratorios->save();
+        return redirect()->route('laboratorios.index');
     }
 
     /**
@@ -34,9 +52,10 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function show(Laboratorio $laboratorio)
+    public function show($id)
     {
-        //
+        $laboratorios = DB::select('call listaLaboratorios(?)',[$id]);
+        return response()->json($laboratorios);
     }
 
     /**
@@ -46,9 +65,11 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Laboratorio $laboratorio)
+    public function update(Request $request)
     {
-        //
+        $laboratorios = DB::select('call updateLaboratorios(?,?,?)',
+                                    [$request->id, $request->nombre, $request->descripcion]);
+        return back();
     }
 
     /**
