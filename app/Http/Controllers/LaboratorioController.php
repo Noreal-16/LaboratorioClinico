@@ -40,6 +40,15 @@ class LaboratorioController extends Controller
         }
     }
     /**
+     * enviar datos de laboratorio ACTUALIZAR
+     */
+    public function getDatosLaboratorio1(Request $request){
+        if($request->ajax()){
+            $laboratorios = DB::select('call db_Laboratorios()');
+            return response()->json($laboratorios);
+        }
+    }
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,7 +57,7 @@ class LaboratorioController extends Controller
     public function store(Request $request)
     {
         $laboratorios = new Laboratorio;
-        $laboratorios->nombre = $request->input('nombreLaboratorio');
+        $laboratorios->nombreL = $request->input('nombreLaboratorio');
         $laboratorios->descripcion= $request->input('descripcion');
         $laboratorios->save();
         return redirect()->route('laboratorios.index');
@@ -76,7 +85,7 @@ class LaboratorioController extends Controller
     public function update(Request $request)
     {
         $laboratorios = DB::select('call updateLaboratorios(?,?,?)',
-                                    [$request->id, $request->nombre, $request->descripcion]);
+                                    [$request->id, $request->nombreL, $request->descripcion]);
         return back();
     }
 

@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('laboratorios', [Laborator
 Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios/show/{id}', [LaboratorioController::class, 'show'])->name('laboratorios.show');
 Route::middleware(['auth:sanctum', 'verified'])->post('laboratorios/actualizar', [LaboratorioController::class, 'update'])->name('laboratorios.update');
 Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios/llamaDatos', [LaboratorioController::class, 'getDatosLaboratorio'])->name('laboratorios.getDatosLaboratorio');
+Route::middleware(['auth:sanctum', 'verified'])->get('laboratorios/llamaData', [LaboratorioController::class, 'getDatosLaboratorio1'])->name('laboratorios.getDatosLaboratorio1');
 /**
  * Direcciones Categoria
  */
@@ -44,6 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('categorias/eliminar/{id}',
 Route::middleware(['auth:sanctum', 'verified'])->get('categorias/show/{id}', [CategoriaController::class, 'show'])->name('categorias.show');
 Route::middleware(['auth:sanctum', 'verified'])->post('categorias/actualizar', [CategoriaController::class, 'update'])->name('categorias.update');
 Route::middleware(['auth:sanctum', 'verified'])->get('categorias/llamaDatos', [CategoriaController::class, 'getDatosCategoria'])->name('categorias.getDatosCategoria');
+Route::middleware(['auth:sanctum', 'verified'])->get('categorias/llenaData', [CategoriaController::class, 'getDatosCategoria1'])->name('categorias.getDatosCategoria1');
 
 /**
  * Direcciones Pacientes
@@ -64,8 +66,9 @@ Route::middleware(['auth:sanctum', 'verified'])->post('medicos/actualizar', [Med
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('examenes', [ExamenController::class, 'index'])->name('examenes.index');
 Route::middleware(['auth:sanctum', 'verified'])->post('examenes', [ExamenController::class, 'store'])->name('examenes.store');
-Route::middleware(['auth:sanctum', 'verified'])->get('examenes/llamaDatos/{categoria_id}', [ExamenController::class, 'getDatosExamenes1'])->name('examenes.getDatosExamenes1');
-Route::middleware(['auth:sanctum', 'verified'])->get('examenes/llamaData', [ExamenController::class, 'getDatosExamenes'])->name('examenes.getDatosExamenes');
+Route::middleware(['auth:sanctum', 'verified'])->get('examenes/show/{id}', [ExamenController::class, 'show'])->name('examenes.show');
+Route::middleware(['auth:sanctum', 'verified'])->post('examenes/actualizar', [ExamenController::class, 'update'])->name('examenes.update');
+
 
 /**
  * Pedidos

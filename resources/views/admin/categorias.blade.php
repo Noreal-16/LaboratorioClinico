@@ -153,7 +153,7 @@
             },
             columns:[
                 {data: 'id'},
-                {data: 'nombre'},
+                {data: 'nombreC'},
                 {data: 'descripcion'},
                 {data: 'action', orderable: false},
             ]
@@ -228,7 +228,7 @@
             $.get('categorias/show/'+id, function(categorias){
             //asignar datos recuperados
             $('#txtId').val(categorias[0].id);
-            $('#nombreCategoriaAc').val(categorias[0].nombre);
+            $('#nombreCategoriaAc').val(categorias[0].nombreC);
             $('#descripcionAc').val(categorias[0].descripcion);
             $("input[name=_token]").val();
             $('#modalActualizaCategoria').modal('toggle');
@@ -249,7 +249,7 @@
                 type:"POST",
                 data:{
                     id:id2,
-                    nombre:nombre2,
+                    nombreC:nombre2,
                     descripcion:descripcion2,
                     _token:_token2
                 },

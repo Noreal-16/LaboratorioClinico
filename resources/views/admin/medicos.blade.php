@@ -124,7 +124,7 @@
                     },
                     columns:[
                         {data: 'id'},
-                        {data: 'nombre'},
+                        {data: 'nombreM'},
                         {data: 'observaciones'},
                         {data: 'action', orderable: false},
                     ]
@@ -136,7 +136,7 @@
             function listaMedicos(id){
                 $.get('medicos/show/'+id, function(medicos){
                     $('#id').val(medicos[0].id);
-                    $('#nombreMedicoAC').val(medicos[0].nombre);
+                    $('#nombreMedicoAC').val(medicos[0].nombreM);
                     $('#observacionAC').val(medicos[0].observaciones);
                     $("input[name=_token]").val();
                     $('#modalActualizaMedico').modal('toggle');
@@ -158,7 +158,7 @@
                     type:"POST",
                     data:{
                         id:idmed,
-                        nombre:mednombre,
+                        nombreM:mednombre,
                         observaciones:medobservacion,
                         _token:_tokenMed,
                     },

@@ -41,7 +41,7 @@ class MedicoController extends Controller
     {
         //Guardar Datos
         $medicos = new Medico;
-        $medicos->nombre = $request->input('nombreMedico');
+        $medicos->nombreM = $request->input('nombreMedico');
         $medicos->observaciones = $request->input('observacion');
         $medicos->save();
         return redirect()->route('medicos.index');
@@ -71,7 +71,7 @@ class MedicoController extends Controller
     {
         //
         $pacientes =DB::select('call updateMedicos(?,?,?)',
-                                [$request->id, $request->nombre,$request->observaciones]);
+                                [$request->id, $request->nombreM,$request->observaciones]);
         return back();
     }
 

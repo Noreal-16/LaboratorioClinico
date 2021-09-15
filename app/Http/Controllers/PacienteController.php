@@ -41,7 +41,7 @@ class PacienteController extends Controller
     {
         //Guardar datos de paciente
         $paciente = new Paciente;
-        $paciente->nombre = $request->input('nombre');
+        $paciente->nombreP = $request->input('nombre');
         $paciente->apellido = $request->input('apellido');
         $paciente->sexo = $request->input('sexo');
         $paciente->cedula = $request->input('cedula');
@@ -80,7 +80,7 @@ class PacienteController extends Controller
     {
         //Actualizar Pacientes
         $pacientes = DB::select('call updatePacientes(?,?,?,?,?,?,?,?,?,?,?)',
-                                [$request->id,$request->nombre,$request->apellido,$request->sexo,$request->cedula,$request->fechaNacimiento,$request->edad,$request->direccion,$request->telefono,$request->correo,$request->observaciones]);
+                                [$request->id,$request->nombreP,$request->apellido,$request->sexo,$request->cedula,$request->fechaNacimiento,$request->edad,$request->direccion,$request->telefono,$request->correo,$request->observaciones]);
         return back();
     }
 

@@ -42,6 +42,16 @@ class CategoriaController extends Controller
             return response()->json($categorias);
         }
     }
+    /**
+     * CargarDatos para actualizar
+     */
+    public function getDatosCategoria1(Request $request)
+    {
+        if ($request->ajax()){
+            $categorias = DB::select('CALL dbcategorias()');
+            return response()->json($categorias);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +68,7 @@ class CategoriaController extends Controller
         return view('admin.categorias');
         */
         $categorias = new Categoria;
-        $categorias->nombre = $request->input('nombreCategoria');
+        $categorias->nombreC = $request->input('nombreCategoria');
         $categorias->descripcion = $request->input('descripcion');
         $categorias->save();
         return redirect()->route('categorias.index');
@@ -85,7 +95,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request)
     {
-        $categorias = DB::select('call updateCategorias(?,?,?)',[$request->id, $request->nombre, $request->descripcion]);
+        $categorias = DB::select('call updateCategorias(?,?,?)',[$request->id, $request->nombreC, $request->descripcion]);
         return back();
 
 

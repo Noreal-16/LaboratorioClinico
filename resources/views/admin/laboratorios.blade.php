@@ -122,7 +122,7 @@
                         },
                         columns:[
                             {data: 'id'},
-                            {data: 'nombre'},
+                            {data: 'nombreL'},
                             {data: 'descripcion'},
                             {data: 'action', orderable: false},
 
@@ -134,7 +134,7 @@
                 function listaLaboratorios(id){
                     $.get('laboratorios/show/'+id, function(laboratorios){
                         $('#id').val(laboratorios[0].id);
-                        $('#nombreLaboratorioAC').val(laboratorios[0].nombre);
+                        $('#nombreLaboratorioAC').val(laboratorios[0].nombreL);
                         $('#descripcionAC').val(laboratorios[0].descripcion);
                         $("input[name=_token]").val();
                         $('#modalActualizaLaboratorio').modal('toggle');
@@ -155,7 +155,7 @@
                         type:"POST",
                         data:{
                             id:idLab,
-                            nombre:labNombre,
+                            nombreL:labNombre,
                             descripcion:labDescripcion,
                             _token:_tokenLab,
                         },

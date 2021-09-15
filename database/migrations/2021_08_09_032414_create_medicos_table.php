@@ -15,7 +15,7 @@ class CreateMedicosTable extends Migration
     {
         Schema::create('medicos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombreM');
             $table->string('observaciones');
             $table->timestamps();
         });

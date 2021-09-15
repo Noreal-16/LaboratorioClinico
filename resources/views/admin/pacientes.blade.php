@@ -231,7 +231,7 @@
             },
             columns:[
                 {data: 'id'},
-            {data: 'nombre'},
+            {data: 'nombreP'},
             {data: 'apellido'},
             {data: 'sexo'},
             {data: 'cedula'},
@@ -248,7 +248,7 @@ function listarPacientes(id){
     $.get('pacientes/show/'+id, function(pacientes){
         //asignar datos recuperados
         $('#id').val(pacientes[0].id);
-        $('#nombreAC').val(pacientes[0].nombre);
+        $('#nombreAC').val(pacientes[0].nombreP);
         $('#apellidosAC').val(pacientes[0].apellido);
         $('#sexoAC').val(pacientes[0].sexo);
         $('#cedulaAC').val(pacientes[0].cedula);
@@ -284,7 +284,7 @@ $('#actualizaPaciente').submit(function (e) {
         type:"POST",
         data:{
             id: idAc,
-            nombre: nombreAc,
+            nombreP: nombreAc,
             apellido:apellidoAc,
             sexo:sexoAc,
             cedula:cedulaAc,

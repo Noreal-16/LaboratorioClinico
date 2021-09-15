@@ -26,7 +26,7 @@ class ExamenController extends Controller
             return DataTables::of($examenes)
             ->addIndexColumn('')
             ->addColumn('action', function ($examenes){
-                $acciones ='<a href="javascript:void(0)" onclick="listaMedicos('.$examenes->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete"  class="delete btn btn-danger btn-sm">Delete</a>';
+                $acciones ='<a href="javascript:void(0)" onclick="listaExamenes('.$examenes->id.')" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" name="delete"  class="delete btn btn-danger btn-sm">Delete</a>';
                 return $acciones;
             })
             ->rawColumns(['action'])
@@ -35,32 +35,7 @@ class ExamenController extends Controller
 
         return view('admin.examenes');
     }
-/**
-     * Enviar los datps
-     */
-    public function getDatosExamenes()
-    {
-            $examenes = DB::select('CALL db_examenes_p()');
-            return response()->json($examenes);
-    }
-    public function getDatosExamenes1($categoria_id)
-    {
-            $examenes = DB::select('CALL examenessPrueba(?)]', [$categoria_id]);
-            return response()->json($examenes);
-    }
-    public function getDatosExamenes2($categoria_id)
-    {
-        $examenes = Examen::with('category') -> get();
-        return $examenes;
 
-    }
-
-    /**
-     * Metodo para capturar datos
-     */
-    public function capturaDatos(){
-
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -70,7 +45,7 @@ class ExamenController extends Controller
     public function store(Request $request)
     {
         $examenes = new Examen;
-        $examenes->nombre = $request->input('nombre');
+        $examenes->nombreE = $request->input('nombre');
         $examenes->categoria_id = $request->input('comboCategoria');
         $examenes->laboratorio_id = $request->input('comboLaboratorio');
         $examenes->formato = $request->input('formato');
@@ -95,9 +70,10 @@ class ExamenController extends Controller
      * @param  \App\Models\Examen  $examen
      * @return \Illuminate\Http\Response
      */
-    public function show(Examen $examen)
+    public function show($id)
     {
-        //
+        $examenes = DB::select('call listaExamenes(?)', [$id]);
+        return response()->json($examenes);
     }
 
     /**
@@ -107,9 +83,26 @@ class ExamenController extends Controller
      * @param  \App\Models\Examen  $examen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examen $examen)
+    public function update(Request $request)
     {
-        //
+        $examenes = DB::select('call updateExamenes(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[
+            $request->id,
+            $request->nombreE,
+            $request->categoria_id,
+            $request->laboratorio_id,
+            $request->formato,
+            $request->unidadMedida,
+            $request->precio1,
+            $request->precio2,
+            $request->valReferencia1,
+            $request->valReferencia2,
+            $request->valReferencia3,
+            $request->valReferencia4,
+            $request->valReferencia5,
+            $request->valReferencia6,
+            $request->valReferencia7,
+            $request->valReferencia8,]);
+        return back();
     }
 
     /**
