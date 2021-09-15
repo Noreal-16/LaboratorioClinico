@@ -15,7 +15,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
                     </div>
-                    <form id="registroCategoria">
+                    <form id="registroCategoria" method="POST" action="{{route('categorias.store')}}">
                         @csrf
 
 
@@ -162,6 +162,7 @@
     </script>
     <!--METODO PARA CREAR UNA CATEGORIA-->
     <script>
+       /**
         $('#registroCategoria').submit(function(e){
             e.preventDefault();
             var nombre =$('#nombreCategoria').val();
@@ -196,6 +197,7 @@
                 }
             });
         });
+        */
     </script>
     <!--METODO PARA ELIMINAR DATOS-->
     <script>

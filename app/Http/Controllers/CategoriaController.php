@@ -32,6 +32,16 @@ class CategoriaController extends Controller
         }
         return view('admin.categorias');
     }
+    /**
+     * Enviar los datps
+     */
+    public function getDatosCategoria(Request $request)
+    {
+        if ($request->ajax()){
+            $categorias = DB::select('CALL dbcategorias()');
+            return response()->json($categorias);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,9 +52,16 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //lamar al procedimiendo almacenado
+        /**
         $categorias = DB::select('call createCategoria(?,?)',[$request->nombre, $request->descripcion]);
 
         return view('admin.categorias');
+        */
+        $categorias = new Categoria;
+        $categorias->nombre = $request->input('nombreCategoria');
+        $categorias->descripcion = $request->input('descripcion');
+        $categorias->save();
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -55,10 +72,8 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-
         $categorias = DB::select('call listaCategoria(?)',[$id]);
         return response()->json($categorias);
-
     }
 
     /**

@@ -35,7 +35,6 @@
                                     <select class="form-control" name="sexo" id="sexo" aria-describedby="espeHelp">
                                             <option value="Masculino">Masculino</option>
                                             <option value="Femenino">Femenino</option>
-
                                     </select>
                                 </div>
                             </div>

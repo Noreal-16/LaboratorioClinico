@@ -30,7 +30,15 @@ class LaboratorioController extends Controller
         }
         return view('admin.laboratorios');
     }
-
+    /**
+     * enviar datos de laboratorio
+     */
+    public function getDatosLaboratorio(Request $request){
+        if($request->ajax()){
+            $laboratorios = DB::select('call db_Laboratorios()');
+            return response()->json($laboratorios);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *

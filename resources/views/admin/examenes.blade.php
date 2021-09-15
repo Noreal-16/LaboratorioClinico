@@ -25,10 +25,8 @@
                     <div class="modal-body">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="registro">
-                                <form id="registroExamenes" method="POST" action="">
-
-                                    <input type="hidden" value="" id="" name="" />
-
+                                <form id="registroExamenes" method="POST" action="{{route('examenes.store')}}">
+                                    @csrf
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <span class="input-group-text">Nombres:</span>
@@ -38,26 +36,24 @@
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <span class="input-group-text">Categoría:</span>
-                                                <select name="select" class="form-control">
-                                                    <option value="value1" selected >Bioquimica</option>
-                                                    <option value="value2" >Quimica</option>
+                                                <select name="comboCategoria" id="comboCategoria" class="form-control">
+
                                                 </select>
-                                            </div>
-                                           </div>
+                                        </div>
+                                    </div>
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <span class="input-group-text">Laboratorio:</span>
-                                            <select name="select" class="form-control">
-                                                <option value="value1" selected >San Pablo</option>
-                                                <option value="value2" >Medilav</option>
+                                            <select name="comboLaboratorio" id="comboLaboratorio" class="form-control">
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <span class="input-group-text">Formato:</span>
-                                            <select name="select" class="form-control">
-                                                <option value="value1" selected >1111</option>
+                                            <select name="formato" id="formato" class="form-control">
+                                                <option value="NH-01" selected >NH-01</option>
                                             </select>
                                         </div>
                                     </div>
@@ -79,12 +75,8 @@
                                             <input type="number" class="form-control" id="precio2" name="precio2" >
                                         </div>
                                     </div>
-
-
-                                </form>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="registro2">
-                                <form id="registroPaciente" method="POST" action="">
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="registro2">
 
                                     <input type="hidden" value="" id="" name="" />
 
@@ -180,9 +172,8 @@
                                     <div class="modal-body">
                                         <div class="input-group">
                                             <span class="input-group-text">Categoría:</span>
-                                                <select name="select" class="form-control">
-                                                    <option value="value1" selected >Bioquimica</option>
-                                                    <option value="value2" >Quimica</option>
+                                                <select name="comboCategoriaAC" id="comboCategoriaAC" class="form-control">
+
                                                 </select>
                                             </div>
                                            </div>
@@ -221,7 +212,7 @@
                                             <input type="number" class="form-control" id="precio2" name="precio2" >
                                         </div>
                                     </div>
-
+                                   
 
                                 </form>
                             </div>
@@ -305,7 +296,7 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <table id="tablaLHistorialP" class="table table-sm">
+                        <table id="tablaExamenes" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Id Examen</th>
@@ -319,59 +310,77 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
 
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                          </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            nnnnnn
-                                        </td>
-                                        <td>
-                                            <form name="eliminarHistorialM" action="/eliminarHistorial" method="POST">
-                                                <input type="hidden" value="<%= item.external_id%>" id="externalDelete" name="externalDelete">
-                                                <div class="btn-group">
-                                                    <a href="#" data-toggle="modal" data-target="#actualizaExamenes" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenaDatosHistorial('')">
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                                        <path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                                                    </svg>
-                                                        <i class="far fa-edit"></i></a>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <button type="submit" class="btn btn-sm ">
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1z"/>
-                                                    </svg>
-                                                </button>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @section('js')
+    <script>
+        $(document).ready(function() {
+            ListarExam();
+            var tablaExamen = $('#tablaExamenes').DataTable({
+                processing:true,
+                serverSide:true,
+
+                ajax:{
+                    url:"{{route('examenes.index')}}",
+                },
+                columns:[
+                    {data: 'id'},
+                    {data:'nombre'},
+                    {data:'nombre'},
+                    {data:'nombre'},
+                    {data:'formato'},
+                    {data:'unidadMedida'},
+                    {data:'precio1'},
+                    {data:'precio2'},
+                    {data: 'action', orderable: false},
+                ]
+            });
+        });
+    </script>
+    
+    <!-----------------------------CARGAR DATOS EXAMENES------------------------------------------->
+     <script>
+        function ListarExam() {
+            $.get('examenes/llamaData', function(examenes){
+                console.log("-----------------");
+                console.log(examenes);
+                console.log("-----------------");
+            })
+        }
+        </script>
+     <script>
+        $(document).ready(function () {
+            $.get("{{route('categorias.getDatosCategoria')}}", function(categorias){
+            //asignar datos recuperados
+            var opcion = '';
+            $.each(categorias, function (index, item) {
+                opcion += '<option  value= ' + item.id + '>' + item.nombre + '</option>';
+            });
+            $("#comboCategoria").html(opcion);
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.get("{{route('laboratorios.getDatosLaboratorio')}}", function(laboratorios){
+            //asignar datos recuperados
+            var opcion = '';
+            $.each(laboratorios, function (index, item) {
+                opcion += '<option  value= ' + item.id + '>' + item.nombre + '</option>';
+            });
+            $("#comboLaboratorio").html(opcion);
+            })
+        });
+    </script>
+    <script>
+        function dato(){
+            return "Bioquimica";
+        }
+    </script>
+    @stop
 @stop
