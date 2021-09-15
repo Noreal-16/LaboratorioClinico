@@ -1,6 +1,6 @@
 
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2', true)
 @section('content_header')
 <section>
     <div class="input-group mb-3">

@@ -24,7 +24,11 @@
                                         <span class="input-group-text">Nombre:</span>
                                         <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" placeholder="Ingrese Nombre Categoría" >
                                     </div>
+                                    @error('nombreCategoria')
+                                    <small>*{{$message}}</small>
+                                    @enderror
                                 </div>
+                                
                                 <div class="modal-body">
                                     <div class="input-group">
                                         <span class="input-group-text">Descripcion:</span>
@@ -160,44 +164,19 @@
         });
     });
     </script>
-    <!--METODO PARA CREAR UNA CATEGORIA-->
+    <!--SwitcAlert-->
     <script>
-       /**
-        $('#registroCategoria').submit(function(e){
-            e.preventDefault();
-            var nombre =$('#nombreCategoria').val();
-            var descripcion =$('#descripcion').val();
-            var _token = $("input[name=_token]").val();
-
-            $.ajax({
-                url: "{{route('categorias.store')}}",
-                type: "POST",
-                data:{
-                    nombre: nombre,
-                    descripcion: descripcion,
-                    _token:_token
-                },
-                succses:function(response){
-                    if(response){
-                        $('#modalRegistroCategoria').modal('hide');
-                        $('#tablaCategoria').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Categoria Guardada!',
-                            'You clicked the button!',
-                            'success'
-                            );
-                    }else{
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Error al cargar datos',
-                            icon: 'error',
-                            confirmButtonText: 'Cool'
-                        })
-                    }
-                }
-            });
-        });
-        */
+       $('#registroCategoria').submit(function (e) {
+           e.preventDefault();
+           Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Su registro se ha guardado correctamente',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        this.submit();
+       })
     </script>
     <!--METODO PARA ELIMINAR DATOS-->
     <script>
@@ -239,6 +218,9 @@
     <script>
         $('#actualizaCategoria').submit(function(e){
             e.preventDefault();
+            //
+            
+            //
             var id2 =$('#txtId').val();
             var nombre2 =$('#nombreCategoriaAc').val();
             var descripcion2 =$('#descripcionAc').val();
@@ -257,11 +239,18 @@
                     if(response){
                         $('#modalActualizaCategoria').modal('hide');
                         $('#tablaCategoria').DataTable().ajax.reload();
+                        
                     }
                 }
 
             })
         });
     </script>
+    <script>
+        $('#actualizaCategoria').submit(function (e) {
+            e.preventDefault();
+            
+        })
+     </script>
     @stop
 @stop

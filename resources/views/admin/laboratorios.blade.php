@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2', true)
 @section('content_header')
     <h1>Laboratorios</h1>
     <div>
@@ -111,6 +111,20 @@
             </div>
         </div>
         @section('js')
+        <!--SwitcAlert-->
+        <script>
+            $('#registroLaboratorio').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                 position: 'top-end',
+                 icon: 'success',
+                 title: 'Su registro se ha guardado correctamente',
+                 showConfirmButton: false,
+                 timer: 2000
+                 })
+             this.submit();
+            })
+         </script>
             <script>
                 $(document).ready(function(){
                     var tabLaboratorio = $('#tablaLaboratorio').DataTable({

@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-
+@section('plugins.Sweetalert2', true)
 @section('content_header')
     <h1>Paciente</h1>
     <div>
@@ -219,6 +219,20 @@
             </div>
         </div>
         @section('js')
+        <!--SwitcAlert-->
+        <script>
+            $('#registroPaciente').submit(function (e) {
+                e.preventDefault();
+                Swal.fire({
+                 position: 'center',
+                 icon: 'success',
+                 title: 'Su registro se ha guardado correctamente',
+                 showConfirmButton: false,
+                 timer: 1500
+                 })
+             this.submit();
+            })
+         </script>
 <!--METODO PARA LISTAR DATOS Pacientes-->
 <script>
     $(document).ready(function(){

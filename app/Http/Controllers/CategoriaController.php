@@ -61,12 +61,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //lamar al procedimiendo almacenado
-        /**
-        $categorias = DB::select('call createCategoria(?,?)',[$request->nombre, $request->descripcion]);
-
-        return view('admin.categorias');
-        */
+        $request -> validate([
+            'nombreCategoria' => 'required',
+            'descripcion' => 'required',
+        ]);
         $categorias = new Categoria;
         $categorias->nombreC = $request->input('nombreCategoria');
         $categorias->descripcion = $request->input('descripcion');
